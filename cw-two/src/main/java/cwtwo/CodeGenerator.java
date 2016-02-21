@@ -12,7 +12,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 public interface CodeGenerator {
 
-	Code generateCode(ColorBank colorBank);
+	Code generateCode(ColorBank colorBank,Integer turns,Integer pegs);
 
 	@BindingAnnotation
 	@Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)

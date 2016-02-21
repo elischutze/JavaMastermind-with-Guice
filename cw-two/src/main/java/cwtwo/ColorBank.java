@@ -15,15 +15,29 @@ public class ColorBank {
 
     private static Hashtable<String, Colour> colorBank = new Hashtable<>();
     private static Hashtable<String,Colour> rightOrAlmost = new Hashtable<>();
+    private static List<Colour> colours;
+    private static Colour[] rightWrong;
 
     @Inject
-    public ColorBank(List<Colour> colours, Colour[] rightOrAlmost){
-        for(Colour colour : colours){
-            colorBank.put(colour.getName().substring(0,1),colour);
+    public ColorBank(List<Colour> colours, Colour[] rightOrAlmost) {
+
+        this.colours = colours;
+        this.rightWrong = rightOrAlmost;
+        fillColorBank();
+
+        System.out.println(colours);
+
+    }
+
+    public static void fillColorBank() {
+
+        for (Colour colour : colours) {
+            colorBank.put(colour.getName().substring(0, 1), colour);
         }
 
-        this.rightOrAlmost.put("Right",rightOrAlmost[0]);
-        this.rightOrAlmost.put("Almost",rightOrAlmost[1]);
+
+       rightOrAlmost.put("Right",rightWrong[0]);
+       rightOrAlmost.put("Almost",rightWrong[1]);
 
     }
 

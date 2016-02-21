@@ -5,8 +5,10 @@ package cwtwo;
  */
 public class FeedbackGenerator implements CodeGenerator {
 
+
+
     @Override
-    public Code generateCode(ColorBank colorBank) {
+    public Code generateCode(ColorBank colorBank, Integer turns, Integer pegs) {
         return null;
     }
 }

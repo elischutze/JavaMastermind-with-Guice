@@ -4,7 +4,9 @@ import com.google.inject.Inject;
 
 
 public class Mastermind extends MastermindAbstract  {
-	
+
+	@Inject
+	ColorBank colorBank;
 
 	
 	@Inject
@@ -12,7 +14,8 @@ public class Mastermind extends MastermindAbstract  {
 					  @CodeGenerator.Secret CodeGenerator secret,
 					  @CodeGenerator.Feedback CodeGenerator feedback,
 					  @CodeGenerator.Guess CodeGenerator guess,
-					  ColorBank colorBank){
+			 ColorBank colorBank
+){
 
 //		this.showCode=showcode;
 		this.greeter = greeter;
@@ -29,9 +32,9 @@ public class Mastermind extends MastermindAbstract  {
 		// TODO Auto-generated method stub
 
 
-
+		colorBank.fillColorBank();
 		greeter.greet();
-		secretCodeGenerator.generateCode(this.colorBank);
+		secretCodeGenerator.generateCode(this.colorBank,this.turns,this.pegs);
 
 		//make secret code
 

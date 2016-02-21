@@ -11,7 +11,7 @@ public class Yellow extends Colour {
 
     private static Yellow instance = new Yellow();
 
-    private void Yellow(){
+    private  Yellow(){
         this.name = "Yellow";
     }
 

@@ -1,5 +1,7 @@
 package cwtwo;
 
+import com.google.inject.Inject;
+
 public abstract class MastermindAbstract implements Game {
 	
 	protected boolean showCode;
@@ -9,8 +11,9 @@ public abstract class MastermindAbstract implements Game {
 //	protected List<Code> guesses;
 	
 	//protected List<Code> feedback;
-	
-	protected int turns;
+
+	@Inject @Turns protected Integer turns;
+	@Inject @Pegs protected Integer pegs;
 	protected ColorBank colorBank;
 	protected CodeGenerator secretCodeGenerator;
 	protected CodeGenerator feedbackGenerator;
