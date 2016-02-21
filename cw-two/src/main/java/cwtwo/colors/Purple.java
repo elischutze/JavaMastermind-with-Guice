@@ -7,7 +7,7 @@ import com.google.inject.Singleton;
  */
 
 @Singleton
-public class Purple extends Color {
+public class Purple extends Colour {
 
     private static Purple instance = new Purple();
 

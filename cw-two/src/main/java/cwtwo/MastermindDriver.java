@@ -18,7 +18,7 @@ public class MastermindDriver {
     	Injector injector = Guice.createInjector(new MastermindModule());
 
     	Game mastermind = injector.getInstance(Game.class);
-    	mastermind.settings(Settings.getInstance());
+    	//mastermind.settings(Settings.getInstance());
     	
     	//System.out.println("We are running!");
     	

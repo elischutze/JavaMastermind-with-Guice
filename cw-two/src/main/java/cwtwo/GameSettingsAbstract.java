@@ -1,18 +1,19 @@
 package cwtwo;
+import java.awt.*;
 import java.util.List;
 
 public abstract class GameSettingsAbstract {
 	
-	List<String> colours;
-	List<String> pegColours;
+	List<Color> colours;
+	List<Color> pegColours;
 	int numPegs;
 	int numTurns;
 	
-	public List<String> getColours(){
+	public List<Color> getColours(){
 		return this.colours;
 	}
 	
-	public List<String> getpegColours(){
+	public List<Color> getpegColours(){
 		return this.pegColours;
 	}
 	

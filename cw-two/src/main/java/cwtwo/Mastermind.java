@@ -8,16 +8,18 @@ public class Mastermind extends MastermindAbstract  {
 
 	
 	@Inject
-	public Mastermind(boolean showcode, Greeter greeter,
+	public Mastermind(/*boolean showcode,*/ Greeter greeter,
 					  @CodeGenerator.Secret CodeGenerator secret,
 					  @CodeGenerator.Feedback CodeGenerator feedback,
-					  @CodeGenerator.Guess CodeGenerator guess){
+					  @CodeGenerator.Guess CodeGenerator guess,
+					  ColorBank colorBank){
 
-		this.showCode=showcode;
+//		this.showCode=showcode;
 		this.greeter = greeter;
 		this.secretCodeGenerator = secret;
 		this.feedbackGenerator = feedback;
 		this.guessGenerator = guess;
+		this.colorBank = colorBank;
 
 
 	}
@@ -25,8 +27,11 @@ public class Mastermind extends MastermindAbstract  {
 	@Override
 	public void runGames() {
 		// TODO Auto-generated method stub
-		
+
+
+
 		greeter.greet();
+		secretCodeGenerator.generateCode(this.colorBank);
 
 		//make secret code
 

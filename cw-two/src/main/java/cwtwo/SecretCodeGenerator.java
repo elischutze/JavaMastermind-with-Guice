@@ -1,23 +1,25 @@
 package cwtwo;
 
-import com.google.inject.BindingAnnotation;
-import java.lang.annotation.Target;
-import java.lang.annotation.Retention;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
+import cwtwo.colors.Colour;
+
+import java.util.Random;
 
 public class SecretCodeGenerator implements CodeGenerator {
 
+
 	public SecretCodeGenerator(){
+
 	}
 	
 
 	@Override
-	public Code generateCode() {
-		
-		return null;
+	public Code generateCode(ColorBank colorBank) {
+
+		Random random = new Random();
+		Colour testCol = colorBank.getColour(random.nextInt(colorBank.numColors()));
+		System.out.println("testCol= "+testCol);
+		return new CodeConcrete();
+
 	}
 
 

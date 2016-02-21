@@ -1,4 +1,5 @@
 package cwtwo;
+
 public abstract class MastermindAbstract implements Game {
 	
 	protected boolean showCode;
@@ -10,10 +11,12 @@ public abstract class MastermindAbstract implements Game {
 	//protected List<Code> feedback;
 	
 	protected int turns;
-	
+	protected ColorBank colorBank;
 	protected CodeGenerator secretCodeGenerator;
 	protected CodeGenerator feedbackGenerator;
 	protected CodeGenerator guessGenerator;
+
+
 //	
 //	protected FeedbackMaker feedbackMaker;
 //	

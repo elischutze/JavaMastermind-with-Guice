@@ -3,7 +3,7 @@ package cwtwo.colors;
 /**
  * Created by elianne on 21/02/2016.
  */
-abstract class Color {
+public abstract class Colour {
 
     protected String name;
 

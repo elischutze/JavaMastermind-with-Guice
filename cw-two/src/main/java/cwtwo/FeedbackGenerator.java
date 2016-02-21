@@ -6,7 +6,7 @@ package cwtwo;
 public class FeedbackGenerator implements CodeGenerator {
 
     @Override
-    public Code generateCode() {
+    public Code generateCode(ColorBank colorBank) {
         return null;
     }
 }
