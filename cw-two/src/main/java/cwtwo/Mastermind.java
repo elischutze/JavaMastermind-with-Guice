@@ -12,7 +12,7 @@ public class Mastermind extends MastermindAbstract  {
 	@Inject
 	public Mastermind(/*boolean showcode,*/ Greeter greeter,
 					  @CodeGenerator.Secret CodeGenerator secret,
-					  @CodeGenerator.Feedback CodeGenerator feedback,
+					  @CodeGenerator.Feedback CodeComparator feedback,
 					  @CodeGenerator.Guess CodeGenerator guess,
 			 ColorBank colorBank
 ){
@@ -30,15 +30,22 @@ public class Mastermind extends MastermindAbstract  {
 	@Override
 	public void runGames() {
 		// TODO Auto-generated method stub
-
-
+		//Initialize
 		colorBank.fillColorBank();
 		greeter.greet();
-		secretCodeGenerator.generateCode(this.colorBank,this.turns,this.pegs);
-
-		//make secret code
-
-		//take a guess
+		this.secretCode=secretCodeGenerator.generateCode(this.colorBank,this.pegs);
+		
+		System.out.println("Secret: "+this.secretCode.getCode().toString());
+		//First attempt
+		for(int i=0;i<=turns;i++){
+        this.guesses.add(guessGenerator.generateCode(this.colorBank,this.pegs));
+        feedbackGenerator.compareCodes(this.secretCode,this.guesses.get(this.guesses.size()-1));
+		this.feedback.add(feedbackGenerator.generateCode(this.colorBank, this.pegs));
+		System.out.println(this.feedback.get(this.feedback.size()-1).getCode().toString());
+		
+		System.out.println("guess again");
+		}
+	
 		//check the guess
 		//provide feedback
 

@@ -25,6 +25,7 @@ public class MastermindDriver {
     	
     	mastermind.runGames();
     	
+    	System.out.println("I hope you see this message");
     
     	
     }

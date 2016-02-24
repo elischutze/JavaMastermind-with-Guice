@@ -17,7 +17,7 @@ public class MastermindModule extends AbstractModule {
 		bind(Game.class).to(Mastermind.class);
 		bind(Greeter.class).to(GreeterImpl.class);
 		bind(CodeGenerator.class).annotatedWith(CodeGenerator.Secret.class).to(SecretCodeGenerator.class);
-		bind(CodeGenerator.class).annotatedWith(CodeGenerator.Feedback.class).to(FeedbackGenerator.class);
+		bind(CodeComparator.class).annotatedWith(CodeGenerator.Feedback.class).to(FeedbackGenerator.class);
 		bind(CodeGenerator.class).annotatedWith(CodeGenerator.Guess.class).to(GuessGenerator.class);
 
 		bind(Integer.class).annotatedWith(Turns.class).toInstance(12);

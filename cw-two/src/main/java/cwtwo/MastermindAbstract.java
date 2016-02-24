@@ -1,22 +1,21 @@
 package cwtwo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.inject.Inject;
 
 public abstract class MastermindAbstract implements Game {
 	
 	protected boolean showCode;
-	
-//	protected Code secretCode;
-//	
-//	protected List<Code> guesses;
-	
-	//protected List<Code> feedback;
-
+	protected Code secretCode;
+	protected List<Code> guesses = new ArrayList<>();
+	protected List<Code> feedback  = new ArrayList<>();
 	@Inject @Turns protected Integer turns;
 	@Inject @Pegs protected Integer pegs;
 	protected ColorBank colorBank;
 	protected CodeGenerator secretCodeGenerator;
-	protected CodeGenerator feedbackGenerator;
+	protected CodeComparator feedbackGenerator;
 	protected CodeGenerator guessGenerator;
 
 

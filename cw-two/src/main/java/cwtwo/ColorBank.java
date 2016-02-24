@@ -13,10 +13,10 @@ import java.util.List;
 //@Singleton
 public class ColorBank {
 
-    private static Hashtable<String, Colour> colorBank = new Hashtable<>();
-    private static Hashtable<String,Colour> rightOrAlmost = new Hashtable<>();
-    private static List<Colour> colours;
-    private static Colour[] rightWrong;
+    private  Hashtable<Character, Colour> colorBank = new Hashtable<>();
+    private  Hashtable<String,Colour> rightOrAlmost = new Hashtable<>();
+    private  List<Colour> colours;
+    private  Colour[] rightWrong;
 
     @Inject
     public ColorBank(List<Colour> colours, Colour[] rightOrAlmost) {
@@ -29,10 +29,10 @@ public class ColorBank {
 
     }
 
-    public static void fillColorBank() {
+    public  void fillColorBank() {
 
         for (Colour colour : colours) {
-            colorBank.put(colour.getName().substring(0, 1), colour);
+            colorBank.put(colour.getName().charAt(0), colour);
         }
 
 
@@ -41,14 +41,16 @@ public class ColorBank {
 
     }
 
-    public static Colour getColour(int index) {
+    public  Colour getColour(int index) {
         return colorBank.get(colorBank.keySet().toArray()[index]);
     }
-    public static Colour getColour(String key) {
+    public  Colour getColour2(Character key) {
         return colorBank.get(key);
     }
-    public static Colour getRightorWrongColor(String key) { return rightOrAlmost.get(key); }
-    public static int numColors(){ return colorBank.size()-1; }
+    public  Colour getRight() { return rightOrAlmost.get("Right"); }
+    public  Colour getAlmost() { return rightOrAlmost.get("Almost"); }
+    
+    public  int numColors(){ return colorBank.size()-1; }
 
 
 
