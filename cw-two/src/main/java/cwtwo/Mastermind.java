@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import cwtwo.colors.Colour;
 
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Mastermind extends MastermindAbstract  {
@@ -11,26 +12,22 @@ public class Mastermind extends MastermindAbstract  {
 	@Inject
 	ColorBank colorBank;
 
-	
+
 	@Inject
 	public Mastermind(/*boolean showcode,*/ Greeter greeter,
-					  @CodeGenerator.Secret CodeGenerator secret,
-					  @CodeGenerator.Feedback CodeComparator feedback,
-					  @CodeGenerator.Guess CodeGenerator guess,
-					  Displayer displayer,
-			 ColorBank colorBank
-){
-
-//		this.showCode=showcode;
+			@CodeGenerator.Secret CodeGenerator secret,
+			@CodeGenerator.Feedback CodeComparator feedback,
+			@CodeGenerator.Guess CodeGenerator guess,
+			Displayer displayer,
+			ColorBank colorBank
+			){
 		this.greeter = greeter;
 		this.secretCodeGenerator = secret;
 		this.feedbackGenerator = feedback;
 		this.guessGenerator = guess;
 		this.colorBank = colorBank;
 		this.displayer = displayer;
-
-
-
+		this.showCode=false;
 	}
 
 	@Override
@@ -40,7 +37,28 @@ public class Mastermind extends MastermindAbstract  {
 		colorBank.fillColorBank();
 		greeter.greet();
 		this.secretCode=secretCodeGenerator.generateCode(this.colorBank,this.pegs);
+		displayer.setSecretcode(this.secretCode);
+		System.out.println("Show the secret code? (Y/N) ");
+		Scanner scanner = new Scanner(System.in);
+		String flag;
+		flag = scanner.next();
+		System.out.println(flag.getClass());
+		Boolean hasSetShowCode = false;
 
+		while(!hasSetShowCode){
+			if (flag.equals("Y")){
+				this.showCode = true;
+				hasSetShowCode = true;
+				System.out.println("The secret code is: ");
+				displayer.displayCode(this.secretCode);
+				System.out.println("\n");
+			}else if (flag.equals("N")){
+				hasSetShowCode = true;
+			} else {
+				System.out.println("Whoops! Please input only Y or N!");
+				flag = scanner.next();
+			}
+		}
 
 		//Loops thru TURNS
 		for(int i=0;i<=turns;i++){
@@ -61,13 +79,10 @@ public class Mastermind extends MastermindAbstract  {
 
 			displayer.setFeedback(this.feedback);
 			displayer.setGuesses(this.guesses);
-			displayer.setSecretcode(this.secretCode);
-//			Displayer test = new MastermindDisplayer(this.secretCode,this.guesses,this.feedback);
 			displayer.displayGame();
-
 			System.out.println("guess again");
 		}
-	
+
 		//check the guess
 		//provide feedback
 
@@ -82,13 +97,13 @@ public class Mastermind extends MastermindAbstract  {
 
 
 
-		
+
 	}
 
 	@Override
 	public void settings(Settings settings) {
 		this.settings = settings;
-		
+
 	}
 
 	public boolean hasWon(){
@@ -109,9 +124,9 @@ public class Mastermind extends MastermindAbstract  {
 				return false;
 			}
 
-	}
+		}
 
 		return true;
 
-}
+	}
 }

@@ -18,6 +18,7 @@ public class MastermindDriver {
     	Injector injector = Guice.createInjector(new MastermindModule());
 
     	Game mastermind = injector.getInstance(Game.class);
+    	
 		//injector.getInstance(ColorBank.class);
     	//mastermind.settings(Settings.getInstance());
     	

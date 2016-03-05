@@ -36,6 +36,7 @@ public class MastermindDisplayer implements Displayer {
 	public void displayGame() {
 		//Need to figure out how to leverage the showCode boolean to determine if this first display should be done or
 		//not, maybe wrap it in an if statement.
+		
 		System.out.print("The secret code is: ");
 		displayCode(secretcode);
 		System.out.println();
