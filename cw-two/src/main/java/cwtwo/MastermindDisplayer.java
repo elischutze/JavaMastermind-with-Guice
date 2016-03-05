@@ -13,14 +13,7 @@ public class MastermindDisplayer implements Displayer {
 	protected List<Code> guesses;
 	
 	protected List<Code> feedback;
-	
-	@Inject
-	public MastermindDisplayer(Code secretcode,List<Code> guesses,List<Code>feedback){
-		this.secretcode = secretcode;
-		this.guesses = guesses;
-		this.feedback=feedback;
-	}
-	
+		
 	public void displayCode(Code input){
 			for (int i=0;i<input.getCode().size();i++){
 				System.out.print(input.getCode().get(i).getName().charAt(0));

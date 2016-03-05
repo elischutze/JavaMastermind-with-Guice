@@ -25,7 +25,6 @@ public class ColorBank {
         this.rightWrong = rightOrAlmost;
         fillColorBank();
 
-        System.out.println(colours);
 
     }
 

@@ -20,8 +20,6 @@ public class SecretCodeGenerator implements CodeGenerator {
 
 		Random random = new Random();
 
-		//System.out.println("testCol= "+testCol);
-		///System.out.println("Turns="+turns+" Pegs="+pegs);
 
 		Code secretCode = new CodeConcrete();
 		

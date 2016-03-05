@@ -41,7 +41,6 @@ public class Mastermind extends MastermindAbstract  {
 		greeter.greet();
 		this.secretCode=secretCodeGenerator.generateCode(this.colorBank,this.pegs);
 
-		System.out.println("Secret: "+this.secretCode.getCode().toString());
 
 		//Loops thru TURNS
 		for(int i=0;i<=turns;i++){
