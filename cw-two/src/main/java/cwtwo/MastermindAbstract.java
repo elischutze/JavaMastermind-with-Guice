@@ -17,6 +17,7 @@ public abstract class MastermindAbstract implements Game {
 	protected CodeGenerator secretCodeGenerator;
 	protected CodeComparator feedbackGenerator;
 	protected CodeGenerator guessGenerator;
+	protected Displayer displayer;
 
 //	protected FeedbackMaker feedbackMaker;
 //	protected Renderer feedbackRenderer;

@@ -17,6 +17,7 @@ public class Mastermind extends MastermindAbstract  {
 					  @CodeGenerator.Secret CodeGenerator secret,
 					  @CodeGenerator.Feedback CodeComparator feedback,
 					  @CodeGenerator.Guess CodeGenerator guess,
+					  Displayer displayer,
 			 ColorBank colorBank
 ){
 
@@ -26,6 +27,8 @@ public class Mastermind extends MastermindAbstract  {
 		this.feedbackGenerator = feedback;
 		this.guessGenerator = guess;
 		this.colorBank = colorBank;
+		this.displayer = displayer;
+
 
 
 	}
@@ -57,8 +60,11 @@ public class Mastermind extends MastermindAbstract  {
 				break;
 			}
 
-			Displayer test = new MastermindDisplayer(this.secretCode,this.guesses,this.feedback);
-			test.displayGame();
+			displayer.setFeedback(this.feedback);
+			displayer.setGuesses(this.guesses);
+			displayer.setSecretcode(this.secretCode);
+//			Displayer test = new MastermindDisplayer(this.secretCode,this.guesses,this.feedback);
+			displayer.displayGame();
 
 			System.out.println("guess again");
 		}

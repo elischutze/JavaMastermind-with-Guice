@@ -43,7 +43,7 @@ public class MastermindModule extends AbstractModule {
 				});
 
 		bind(ColorBank.class);
-
+		bind(Displayer.class).to(MastermindDisplayer.class);
 
 
 

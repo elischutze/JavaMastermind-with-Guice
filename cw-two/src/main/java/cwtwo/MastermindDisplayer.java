@@ -1,17 +1,20 @@
 package cwtwo;
 
-import java.util.ArrayList;
+import com.google.inject.Inject;
+
 import java.util.List;
 
 public class MastermindDisplayer implements Displayer {
-	
+
+
+
 	protected Code secretcode;
 	
 	protected List<Code> guesses;
 	
 	protected List<Code> feedback;
 	
-
+	@Inject
 	public MastermindDisplayer(Code secretcode,List<Code> guesses,List<Code>feedback){
 		this.secretcode = secretcode;
 		this.guesses = guesses;
@@ -35,8 +38,7 @@ public class MastermindDisplayer implements Displayer {
 			}
 		}
 	}
-	
-		
+
 	@Override
 	public void displayGame() {
 		//Need to figure out how to leverage the showCode boolean to determine if this first display should be done or
@@ -52,7 +54,17 @@ public class MastermindDisplayer implements Displayer {
 			System.out.println();
 		}		
 	}
-	
-	
+
+	public void setSecretcode(Code secretcode) {
+		this.secretcode = secretcode;
+	}
+
+	public void setGuesses(List<Code> guesses) {
+		this.guesses = guesses;
+	}
+
+	public void setFeedback(List<Code> feedback) {
+		this.feedback = feedback;
+	}
 
 }
