@@ -43,6 +43,10 @@ public class Mastermind extends MastermindAbstract  {
 		this.feedback.add(feedbackGenerator.generateCode(this.colorBank, this.pegs));
 		System.out.println(this.feedback.get(this.feedback.size()-1).getCode().toString());
 		
+		
+		Displayer test = new MastermindDisplayer(this.secretCode,this.guesses,this.feedback);
+		test.displayGame();
+		
 		System.out.println("guess again");
 		}
 	
