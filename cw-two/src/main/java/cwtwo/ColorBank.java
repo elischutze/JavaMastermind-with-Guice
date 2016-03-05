@@ -36,8 +36,8 @@ public class ColorBank {
         }
 
 
-       rightOrAlmost.put("Right",rightWrong[0]);
-       rightOrAlmost.put("Almost",rightWrong[1]);
+       rightOrAlmost.put("Right",rightWrong[1]);
+       rightOrAlmost.put("Almost",rightWrong[0]);
 
     }
 

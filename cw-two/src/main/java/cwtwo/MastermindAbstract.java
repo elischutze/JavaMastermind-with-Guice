@@ -1,9 +1,9 @@
 package cwtwo;
 
+import com.google.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.inject.Inject;
 
 public abstract class MastermindAbstract implements Game {
 	
@@ -18,24 +18,14 @@ public abstract class MastermindAbstract implements Game {
 	protected CodeComparator feedbackGenerator;
 	protected CodeGenerator guessGenerator;
 
-
-//	
 //	protected FeedbackMaker feedbackMaker;
-//	
 //	protected Renderer feedbackRenderer;
 	
 	protected Greeter greeter;
-	
 	abstract public void runGames();
-	
 	//public MastermindAbstract( )
-	
 	protected Settings settings;
-	
 
-	
-	
-	
-	
+
 
 }

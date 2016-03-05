@@ -4,9 +4,7 @@ package cwtwo;
  * Created by elianne on 21/02/2016.
  */
 
-import cwtwo.colors.Colour;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 public class FeedbackGenerator implements CodeComparator {
 
@@ -20,20 +18,27 @@ public class FeedbackGenerator implements CodeComparator {
     	Code feedbackCode = new CodeConcrete();
     	   	
     	for (int i=0; i<pegs;i++) {
+
+
     		if ( (guesscode.getCode().get(i)) == (secretcode.getCode().get(i)) ) {
+
+				//add a 'Correct place correct color' peg
     			feedbackCode.addPeg(colorBank.getRight());    			
     		}
     		else if ( secretcode.getCode().contains(guesscode.getCode().get(i) )) {
+
+				//add a 'Wrong place correct color' peg
     			feedbackCode.addPeg(colorBank.getAlmost());
     		} 
     	}
-    	
-    	return feedbackCode;
+
+		Collections.shuffle(feedbackCode.getCode());
+		return feedbackCode;
     	
     }
 
 	@Override
-	public void compareCodes(Code secretcode, Code guesscode) {
+	public void useCodes(Code secretcode, Code guesscode) {
 		this.secretcode=secretcode;
 		this.guesscode=guesscode;
 		
