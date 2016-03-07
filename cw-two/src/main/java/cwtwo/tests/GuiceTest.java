@@ -1,26 +1,15 @@
 package cwtwo.tests;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-import org.junit.Test;
-
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
+import cwtwo.*;
+import org.junit.Test;
 
-import cwtwo.CodeGenerator;
-import cwtwo.CodeGenerator.Secret;
-import cwtwo.Displayer;
-import cwtwo.FeedbackGenerator;
-import cwtwo.Game;
-import cwtwo.Greeter;
-import cwtwo.GreeterImpl;
-import cwtwo.Mastermind;
-import cwtwo.MastermindDisplayer;
-import cwtwo.MastermindModule;
-import cwtwo.SecretCodeGenerator;
-import cwtwo.Turns;
-import cwtwo.colors.Black;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 
 public class GuiceTest {
@@ -91,7 +80,7 @@ public class GuiceTest {
 	
 		@Test
 		public void testGuiceBindingTurnCorrect() {;
-			assertEquals(12,injector.getInstance(Key.get(Integer.class,Turns.class)));
+			assertEquals(12,(long) injector.getInstance(Key.get(Integer.class,Turns.class)));
 		}	
 	
 	/*

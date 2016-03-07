@@ -1,20 +1,11 @@
 package cwtwo.tests;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import cwtwo.Code;
 import cwtwo.CodeConcrete;
-import cwtwo.colors.Black;
-import cwtwo.colors.Blue;
-import cwtwo.colors.Colour;
-import cwtwo.colors.Green;
-import cwtwo.colors.Orange;
-import cwtwo.colors.Purple;
-import cwtwo.colors.Red;
-import cwtwo.colors.White;
-import cwtwo.colors.Yellow;
+import cwtwo.colors.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class CodeConcreteTest {
 	

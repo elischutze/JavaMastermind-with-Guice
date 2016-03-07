@@ -9,24 +9,16 @@ public class MastermindDriver {
 
     // Example - change as you need to...
     public static void main(String[] args) {
-        //Game g = Factory.getInstance(Game.class, true);
-        //g.runGames();
 
-        //g = Factory.getInstance(Game.class, false);
-        //g.runGames();
-        
+		//Create Guice injector
     	Injector injector = Guice.createInjector(new MastermindModule());
 
+
+		//Get instance of Mastermind
     	Game mastermind = injector.getInstance(Game.class);
-    	
-		//injector.getInstance(ColorBank.class);
-    	//mastermind.settings(Settings.getInstance());
-    	
-    	//System.out.println("We are running!");
-    	
+
+		//PLAY
     	mastermind.runGames();
-    	
-    	System.out.println("I hope you see this message");
     
     	
     }

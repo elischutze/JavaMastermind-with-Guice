@@ -13,19 +13,15 @@ public abstract class MastermindAbstract implements Game {
 	protected List<Code> feedback  = new ArrayList<>();
 	@Inject @Turns protected Integer turns;
 	@Inject @Pegs protected Integer pegs;
-	protected ColorBank colorBank;
+	@Inject protected ColorBank colorBank;
 	protected CodeGenerator secretCodeGenerator;
 	protected CodeComparator feedbackGenerator;
 	protected CodeGenerator guessGenerator;
 	protected Displayer displayer;
-
-//	protected FeedbackMaker feedbackMaker;
-//	protected Renderer feedbackRenderer;
-	
+	protected boolean playAgain;
 	protected Greeter greeter;
 	abstract public void runGames();
-	//public MastermindAbstract( )
-	protected Settings settings;
+
 
 
 

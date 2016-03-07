@@ -9,7 +9,7 @@ public class GuessGenerator implements  CodeGenerator {
 
 	private Boolean hasValidColors(String input, ColorBank colorBank){
 		for (int i=0; i< input.length();i++){
-			if ( colorBank.getColour2(input.charAt(i)) == null) {
+			if ( colorBank.getColourByKey(input.charAt(i)) == null) {
 				return false;
 			}
 		}
@@ -42,7 +42,7 @@ public class GuessGenerator implements  CodeGenerator {
     	Code guessCode = new CodeConcrete();
     
     	for(int i=0;i<pegs;i++){
-			guessCode.addPeg(colorBank.getColour2(input.charAt(i)));
+			guessCode.addPeg(colorBank.getColourByKey(input.charAt(i)));
 		}
     	return guessCode;
     	

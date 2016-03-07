@@ -9,18 +9,17 @@ import java.util.Scanner;
 
 public class Mastermind extends MastermindAbstract  {
 
-	@Inject
-	ColorBank colorBank;
+//	@Inject
+//	ColorBank colorBank;
 
-
 	@Inject
-	public Mastermind(/*boolean showcode,*/ Greeter greeter,
-			@CodeGenerator.Secret CodeGenerator secret,
-			@CodeGenerator.Feedback CodeComparator feedback,
-			@CodeGenerator.Guess CodeGenerator guess,
-			Displayer displayer,
-			ColorBank colorBank
-			){
+	public Mastermind(Greeter greeter,
+					  @CodeGenerator.Secret CodeGenerator secret,
+					  @CodeGenerator.Feedback CodeComparator feedback,
+					  @CodeGenerator.Guess CodeGenerator guess,
+					  Displayer displayer,
+					  ColorBank colorBank){
+
 		this.greeter = greeter;
 		this.secretCodeGenerator = secret;
 		this.feedbackGenerator = feedback;
@@ -28,83 +27,123 @@ public class Mastermind extends MastermindAbstract  {
 		this.colorBank = colorBank;
 		this.displayer = displayer;
 		this.showCode=false;
+		this.playAgain=false;
 	}
 
 	@Override
 	public void runGames() {
-		// TODO Auto-generated method stub
+
 		//Initialize
 		colorBank.fillColorBank();
+		greeter.settings(pegs,colorBank.getColours(),turns);
 		greeter.greet();
-		this.secretCode=secretCodeGenerator.generateCode(this.colorBank,this.pegs);
-		displayer.setSecretcode(this.secretCode);
-		System.out.println("Show the secret code? (Y/N) ");
-		Scanner scanner = new Scanner(System.in);
-		String flag;
-		flag = scanner.next();
-		System.out.println(flag.getClass());
-		Boolean hasSetShowCode = false;
 
-		while(!hasSetShowCode){
-			if (flag.equals("Y")){
-				this.showCode = true;
-				hasSetShowCode = true;
-				System.out.println("The secret code is: ");
-				displayer.displayCode(this.secretCode);
-				System.out.println("\n");
-			}else if (flag.equals("N")){
-				hasSetShowCode = true;
-			} else {
-				System.out.println("Whoops! Please input only Y or N!");
+		//Begin Game Loop
+			do{
+				//Set a win flag
+				Boolean won = false;
+
+				//Generate the secret Code
+				this.secretCode = secretCodeGenerator.generateCode(this.colorBank, this.pegs);
+				displayer.setSecretcode(this.secretCode);
+
+				//Prompt user if they want to see the secret code
+				System.out.println("Show the secret code? (Y/N) ");
+
+				//Create scanner to read user input
+				Scanner scanner = new Scanner(System.in);
+				String flag;
+
+				//Accept user input
 				flag = scanner.next();
-			}
-		}
 
-		//Loops thru TURNS
-		for(int i=0;i<=turns;i++){
-			//add users guess to guesses list
-			this.guesses.add(guessGenerator.generateCode(this.colorBank,this.pegs));
-			//tell feedback Generator what codes to compare
-			feedbackGenerator.useCodes(this.secretCode,this.guesses.get(this.guesses.size()-1));
-			//add feedback to list of feedbacks
-			this.feedback.add(feedbackGenerator.generateCode(this.colorBank, this.pegs));
+				//Set flag to determine if user has correctly made a choice
+				Boolean hasSetShowCode = false;
 
-			if(hasWon()){
+				while (!hasSetShowCode) {
+
+						//Show secret code
+					if (flag.equals("Y")) {
+						this.showCode = true;
+						hasSetShowCode = true;
+						System.out.println("The secret code is: ");
+						displayer.displayCode(this.secretCode);
+						System.out.println("\n");
+
+						//Don't show secret code
+					} else if (flag.equals("N")) {
+						hasSetShowCode = true;
+
+						//Wrong input
+					} else {
+						System.out.println("Whoops! Please input only Y or N!");
+						flag = scanner.next();
+					}
+				}
+
+				//Begin Gameplay, Loop through the set number of turns
+
+				for (int i = 0; i <= turns; i++) {
+
+					//take Player's guess. Add Player's guess to historical guesses list
+					this.guesses.add(guessGenerator.generateCode(this.colorBank, this.pegs));
+
+					//tell feedback Generator what codes to compare
+					feedbackGenerator.useCodes(this.secretCode, this.guesses.get(this.guesses.size() - 1));
+
+					//Give PLayer feedback on their guess and add feedback to list of feedbacks
+					this.feedback.add(feedbackGenerator.generateCode(this.colorBank, this.pegs));
+
+					//User guessed correctly
+					if (hasWon()) {
+
+						won = true	;
 
 
-				System.out.println("YOU WON!! YAYY");
-				//exit game, congratulate them
-				break;
-			}
-
-			displayer.setFeedback(this.feedback);
-			displayer.setGuesses(this.guesses);
-			displayer.displayGame();
-			System.out.println("guess again");
-		}
-
-		//check the guess
-		//provide feedback
-
-		//repeat
+						//exit game, congratulate them
+						System.out.println("YOU WON!! YAYY");
+						break;
+					}
 
 
-		//you won! you lost :(
-		//wanna play again?
+					//If player guessed incorrectly, Display the current game state and prompt to guess again
+					displayer.setFeedback(this.feedback);
+					displayer.setGuesses(this.guesses);
+					displayer.displayGame();
+					System.out.println("Nope! Guess Again...");
+				} //Finish Turn loop
 
+				//Game ends and User didn't win
+				if(!won){
+					System.out.println("BOO You Lost! ");
+				}
 
+				//Prompt player for another game
+				System.out.println("Want to play again? Y/N ? ");
 
+				//read input
+				flag = scanner.next();
 
+				//Check for a correct User input
+				boolean hasDecided = false;
+				while (!hasDecided) {
+					if (flag.equals("Y")) {
+						this.playAgain = true;
+						hasDecided = true;
+						System.out.println("Let's Play!");
+					} else if (flag.equals("N")) {
+						hasDecided = true;
+						System.out.println("Thanks for Playing!");
+					} else {
+						System.out.println("Whoops! Please input only Y or N!");
+						flag = scanner.next();
+					}
+				}
 
-
+			} while(playAgain); //Start game over if the user wanted to play again
 
 	}
 
-	@Override
-	public void settings(Settings settings) {
-		this.settings = settings;
-
-	}
 
 	public boolean hasWon(){
 

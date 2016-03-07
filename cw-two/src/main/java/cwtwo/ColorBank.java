@@ -6,9 +6,6 @@ import cwtwo.colors.Colour;
 import java.util.Hashtable;
 import java.util.List;
 
-/**
- * Created by elianne on 21/02/2016.
- */
 
 //@Singleton
 public class ColorBank {
@@ -43,9 +40,14 @@ public class ColorBank {
     public  Colour getColour(int index) {
         return colorBank.get(colorBank.keySet().toArray()[index]);
     }
-    public  Colour getColour2(Character key) {
+    public  Colour getColourByKey(Character key) {
         return colorBank.get(key);
     }
+
+    public List<Colour> getColours(){
+        return this.colours;
+    }
+
     public  Colour getRight() { return rightOrAlmost.get("Right"); }
     public  Colour getAlmost() { return rightOrAlmost.get("Almost"); }
     

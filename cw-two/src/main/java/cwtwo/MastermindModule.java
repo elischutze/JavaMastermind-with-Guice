@@ -1,6 +1,5 @@
 package cwtwo;
 
-
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
 import cwtwo.colors.*;
@@ -13,7 +12,6 @@ public class MastermindModule extends AbstractModule {
 	@Override
 	public void configure() {
 
-		
 		bind(Game.class).to(Mastermind.class);
 		bind(Greeter.class).to(GreeterImpl.class);
 		bind(Displayer.class).to(MastermindDisplayer.class);
@@ -22,10 +20,13 @@ public class MastermindModule extends AbstractModule {
 		bind(CodeComparator.class).annotatedWith(CodeGenerator.Feedback.class).to(FeedbackGenerator.class);
 		bind(CodeGenerator.class).annotatedWith(CodeGenerator.Guess.class).to(GuessGenerator.class);
 
+		// Set number of turns (or guesses) allowed per game. Change this to have a longer/shorter game.
 		bind(Integer.class).annotatedWith(Turns.class).toInstance(12);
+
+		//Set number of pegs in the secret code. Change to make game create a longer/shorter secret code.
 		bind(Integer.class).annotatedWith(Pegs.class).toInstance(4);
 
-		//All available colors in the game
+		//All available colors in the game. Change this list to add or remove colors
 		List<Colour> myList = Arrays.asList(
 				Blue.getInstance(),
 				Red.getInstance(),
@@ -37,14 +38,17 @@ public class MastermindModule extends AbstractModule {
 
 		bind(new TypeLiteral<List<Colour>>(){}).
 				toInstance(myList);
-		//Right and Wrong Peg colors (currently: Black and White)
+
+		//Right and Wrong Peg colors (currently: Black and White) This determines the feedback colors
+		//The first is for correct color, but wrong location
+		//The second color is for correct color, correct location
 		bind(new TypeLiteral<Colour[]>() {}).
 				toInstance(new Colour[]{
 						White.getInstance(),
 						Black.getInstance()
 				});
 
-		bind(ColorBank.class);
+
 		
 
 
