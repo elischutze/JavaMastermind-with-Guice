@@ -7,7 +7,7 @@ import com.google.inject.Injector;
 
 public class MastermindDriver {
 
-    // Example - change as you need to...
+   //Main - Init injector and run the game 
     public static void main(String[] args) {
 
 		//Create Guice injector
